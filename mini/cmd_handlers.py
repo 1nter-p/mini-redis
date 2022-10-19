@@ -8,6 +8,16 @@ def handle_ping(client: socket.socket, _) -> None:
     client.sendall(b"+PONG\r\n")
 
 
+def handle_echo(client: socket.socket, args: list[str]) -> None:
+    """Handle the ECHO command."""
+
+    if not args:
+        client.sendall(b"-ERR wrong number of arguments for 'echo' command\r\n")
+        return
+
+    client.sendall(f"${len(args[0])}\r\n{args[0]}\r\n".encode())
+
+
 def handle_set(client: socket.socket, args: list[str]) -> None:
     """Handle the SET command."""
 
@@ -39,6 +49,7 @@ def handle_get(client: socket.socket, args: list[str]) -> None:
 
 COMMAND_HANDLER_MAP = {
     "ping": handle_ping,
+    "echo": handle_echo,
     "set": handle_set,
     "get": handle_get,
 }
