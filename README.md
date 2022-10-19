@@ -20,7 +20,8 @@ interfering with the real Redis.
 ## 🧑‍💻 Contributing
 
 PRs are welcome! Make sure to format your code using Black and lint your code
-with flake8.
+with flake8. This is usually handled by the
+[pre-commit config](.pre-commit-config.yaml).
 
 ## ⛔ License
 
